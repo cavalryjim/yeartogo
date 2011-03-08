@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  privacy: 1
+  name: MyString
+  timeline: 2011-03-08 17:05:00
+
+two:
+  privacy: 1
+  name: MyString
+  timeline: 2011-03-08 17:05:00
