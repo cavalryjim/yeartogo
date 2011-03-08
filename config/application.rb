@@ -8,6 +8,8 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Yeartogo
   class Application < Rails::Application
+ config.logger = 
+Logger.new("#{Rails.root}/log/#{Rails.env}.log", 50, 1048576)
     # Added by the Rails 3 jQuery Template
 	  # http://github.com/lleger/Rails-3-jQuery, written by Logan Leger
 	  config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
