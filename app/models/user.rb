@@ -14,6 +14,11 @@ class User < ActiveRecord::Base
 	validates_presence_of :username
 	validates_uniqueness_of :username
 	
+	has_many :friendships
+	has_many :friends, :through => :friendships
+	has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+	has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+	
 	mount_uploader :avatar, ImageUploader
 	
 	def self.authenticate(username, password)
@@ -23,6 +28,10 @@ class User < ActiveRecord::Base
 	  else
 	    nil
 	  end
+	end
+	
+	def self.display_name
+		name || username
 	end
 
 	def encrypt_password
