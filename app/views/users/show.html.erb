@@ -1,6 +1,16 @@
 <div id="profile_left">
 	<h2>@<%= @user.username %></h2>
 	<%= image_tag(@user.avatar_url(:big)) if @user.avatar? %>
+	<br />
+	<% if @user != current_user %>
+		<% if current_user.friendships.friends_with?(@user.id) %>
+		<%= link_to "Unfriend", unfriend_path(@user.username) %>
+		<% elsif current_user.friendships.requested?(@user.id) %>
+		<p>Friend request pending.</p>
+		<% else %>
+		<%= link_to "Friend", friend_path(@user.username) %>
+		<% end %>
+	<% end %>
 	<ul id="profile_meta">
 		<% if @user.name.present? %>
 		<li><%= @user.name %></li>
