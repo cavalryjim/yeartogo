@@ -1,13 +1,25 @@
-<h1><%= @user.username %></h1>
+<div id="profile_left">
+	<h2>@<%= @user.username %></h2>
+	<%= image_tag(@user.avatar_url(:big)) if @user.avatar? %>
+	<% if @user.name.present? %>
+	<p><%= @user.name %></p>
+	<% end %>
+	<% if @user.location.present? %>
+	<p><%= @user.location %></p>
+	<% end %>
+	<% if @user.about.present? %>
+	<p><%= @user.about %></p>
+	<% end %>
+</div><!-- #profile_left -->
 
-<%= image_tag(@user.avatar_url(:big)) if @user.avatar? %>
+<div id="profile_right">
+	<h2>Goals</h2>
+	<% if !@user.goals.blank? %>
+	  <% for goal in @user.goals %>
+	    <%= goal.name %>
+	  <% end %>
+	<% else %>
 
-<h2>Goals</h2>
-
-<% if !@user.goals.blank? %>
-  <% for goal in @user.goals %>
-    <%= goal.name %>
-  <% end %>
-<% else %>
-  
-<% end %>
+	<% end %>
+</div><!-- #profile_right -->
+<div class="clear"></div>
