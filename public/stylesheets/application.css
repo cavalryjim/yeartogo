@@ -180,6 +180,16 @@ table tr td {
   width: 70%;
   float: left;
 }
+  #profile_right ul {
+    list-style-type: none;
+  }
+    #profile_right ul li {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #043552;
+    }
+    #profile_right ul li a {
+      font-size: 1.25em;
+    }
 ul#profile_meta {
   list-style-type: none;
 }
@@ -188,3 +198,34 @@ ul#profile_meta {
     padding-bottom: 5px;
     margin-bottom: 5px;
   }
+.profile_goal_list {
+  margin-bottom: 25px;
+}
+  
+/* Goal styles ---------------------------------------------- */
+.goal_section {
+  padding-bottom: 15px;
+}
+  
+/* Comment styles -------------------------------------------- */
+ul#comments {
+  list-style-type: none;
+  width: 650px;
+}
+  ul#comments li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #043552;
+  }
+    ul#comments img {
+      float: left;
+      width: 50px;
+      padding: 10px 0;
+    }
+    .says { font-style: italic; }
+    .comment_data {
+      float: left;
+      padding: 10px 0 10px 10px;
+    }
+      .comment_data p {
+        width: 575px;
+      }
