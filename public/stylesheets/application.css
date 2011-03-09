@@ -1,0 +1,182 @@
+/*
+  YearToGo Main CSS
+  Designed by Logan Leger
+  Copyright 2010, YearToGo
+
+  Color scheme:
+    Red         - 851417
+    Darker red  - 380304
+    Blue        - 158BD1
+    Darker blue - 043552
+    Yellow      - 918F24
+    Dark grey   - 63686b
+*/
+
+/* Browser Reset via Blueprint ------------------------------- */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0; padding: 0; border: 0; font-weight: inherit; font-style: inherit;
+    font-size: 100%; font-family: inherit; vertical-align: baseline; }
+
+body {
+  font: 1em sans-serif;
+  margin: 0 auto;
+  line-height: 1.5;
+  color: #444;
+}
+
+/* General styles -------------------------------------------- */
+
+#container {
+  width: 1000px;
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  min-height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+/* Tables still need 'cellspacing="0"' in the markup. */
+table { border-collapse: separate; border-spacing: 0; }
+caption, th, td { text-align: left; font-weight: normal; }
+table, td, th { vertical-align: middle; }
+
+.clear { clear: both; }
+
+a img { border: none; }
+a { text-decoration: none; color: #158BD1; }
+a:hover { text-decoration: underline; }
+
+h1 { font-size: 2em; font-weight: bold; }
+h2 { font-size: 1.5em; font-weight: bold; }
+h3 { font-size: 1.25em; font-weight: bold; }
+
+/* Table styles ---------------------------------------------- */
+table tr th {
+  border-bottom: 2px solid #000;
+  font-weight: bold;
+  padding-right: 15px;
+}
+table tr td {
+  border-bottom: 2px solid #d9d9d9;
+  padding-right: 15px;
+}
+
+/* Flash notice styles --------------------------------------- */
+#flash_error, #flash_notice, #flash_success {
+  padding: .8em;
+  margin: 0 0 1em 0;
+  border: 2px solid #ddd;
+}
+#flash_error {
+  background: #FBE3E4;
+  color: #8a1f11;
+  border-color: #FBC2C4;
+}
+#flash_notice {
+  background: #FFF6BF;
+  color: #514721;
+  border-color: #FFD324;
+}
+#flash_success {
+  background: #E6EFC2;
+  color: #264409;
+  border-color: #C6D880;
+}
+#flash_error a { color: #8a1f11; }
+#flash_notice a { color: #514721; }
+#flash_success a { color: #264409; }
+
+/* Content styles -------------------------------------------- */
+
+#content {
+  margin: 0 auto;
+  width: 1000px;
+  padding-bottom: 50px;
+  padding-top: 25px;
+}
+
+/* Header styles --------------------------------------------- */
+#header {
+  margin: 0 auto;
+  color: #eee;
+  width: 100%;
+  border-bottom: 1px solid #63686b;
+}
+  #headercontent {
+    width: 1000px;
+    margin: 0 auto;
+  }
+  h1#logo {
+    margin: 0;
+    padding: 12px 0;
+    width: 199px;
+    height: 35px;
+    float: left;
+  } 
+  h1#logo a {
+    background: url('/images/logo_header.png') no-repeat;
+    text-indent: -10000em;
+    width: 199px;
+    height: 35px;
+    display: block;
+    margin: 0;
+  }
+  #nav {
+    float: right;
+    width: 255px;
+    margin-top: 14px;
+    font-weight: bold;
+  }
+    #nav a { color: #63686b; padding-right: 10px; }
+
+/* Footer styles --------------------------------------------- */
+#footer {
+  border-top: 1px solid #63686b;
+  height: 50px;
+  margin: 0 auto;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+  #footercontent {
+    width: 1000px;
+    height: 50px;
+    margin: 0 auto;
+  }
+  #footercontent p {
+    width: 50%;
+    float: left;
+  }
+  #footercontent ul {
+    text-align: right;
+    list-style-type: none;
+    width: 50%;
+    float: left;
+  }
+  #footercontent ul li {
+    width: 100px;
+    float: left;
+  }
+
+/* Home page styles ------------------------------------------ */
+.home_bucket {
+  float: left;
+  width: 325px;
+  margin-right: 5px;
+  margin-top: 15px;
+}
+
+/* Profile styles -------------------------------------------- */
+#profile_left {
+  width: 25%;
+  margin-right: 5%;
+  float: left;
+}
+#profile_right {
+  width: 70%;
+  float: left;
+}
