@@ -11,10 +11,11 @@
 		<div id="header">
 			<div id="headercontent">
 				<h1 id="logo"><%= link_to "year to go", root_url %></h1>
+				<p>Stop. Collaborate. And listen.</p>
 				<div id="nav">
 				<% if current_user %>
 					<%= link_to "Home", root_path %>
-					<%= link_to "Profile", profile_path(:id => current_user.id) %>
+					<%#= link_to "Profile", profile_path(:id => current_user.id) %>
 					<%= link_to "Log out", logout_path %>
 				<% else %>
 					<%= link_to "Register", register_path %>
