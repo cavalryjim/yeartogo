@@ -36,6 +36,11 @@ class GoalsController < ApplicationController
 
 	def show
 		@goal = Goal.find(params[:id])
+		if @goal.private? && @goal.user != current_user
+			redirect_to profile_path, :notice => "You don't have permission to view that goal."
+		elsif @goal.friends? && !current_user.friendships.friends_with?(@goal.user)
+			redirect_to profile_path, :notice => "You don't have permission to view that goal."
+		end
 		@comment = Comment.new
 	end
 end
