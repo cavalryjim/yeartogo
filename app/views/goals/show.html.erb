@@ -1,34 +1,51 @@
-<h2><%= @goal.name %> / <%= @goal.category.name %></h2>
-<p>Due in <%= distance_of_time_in_words(@goal.timeline, Date.today) %></p>
-<p>Completion: <%= number_to_percentage(@goal.completion, :precision => 0) %></p>
+<div class="goal_section">
+	<h2><%= @goal.name %><% if @goal.category.present? %> / <%= @goal.category.name %><% end %></h2>
+	<% if current_user %><%= link_to "edit", edit_goal_path(@goal) %> &middot; <%= link_to "delete", @goal, :confirm => 'Are you sure?', :method => :delete %><% unless @goal.completed? %> &middot; <%= link_to "complete", complete_path(@goal.id) %><% end %><% end %>
+	<p>Due in <%= distance_of_time_in_words(@goal.timeline, Date.today) %></p>
+	<p>Completion: <%= number_to_percentage(@goal.completion, :precision => 0) %></p>
 
-<h2>Comments</h2>
-<% if !@goal.comments.blank? %>
-  <% for comment in @goal.comments %>
-    <%= link_to "@#{comment.user.username}", profile_path(comment.user.username) %><br />
-		<%= comment.body %>
-  <% end %>
-<% else %>
-  <p>No comments yet!</p>
-<% end %>
-
-<%= form_for @comment do |f| -%>
-	<% if @comment.errors.any? %>
-		<div id="error_explanation">
-			<h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-			<ul>
-			<% @comment.errors.full_messages.each do |msg| %>
-				<li><%= msg %></li>
-			<% end %>
-			</ul>
-		</div>
+	<% if !@goal.tags.blank? %>
+	  <% for tag in @goal.tags %>
+	    <%= tag.name %>
+	  <% end %>
 	<% end %>
+</div><!-- .goal_section -->
+
+<div class="goal_section">
+	<h3>Comments</h3>
+	<% if !@goal.comments.blank? %>
+		<ul id="comments">
+	  <% for comment in @goal.comments %>
+			<li><%= image_tag(comment.user.avatar_url(:thumb)) %>
+	    <div class="comment_data"><p><%= link_to "@#{comment.user.username}", profile_path(comment.user.username) %> <span class="says">says</span></p>
+			<p><%= comment.body %></p></div>
+			<div class="clear"></div></li>
+	  <% end %>
+		</ul>
+	<% else %>
+	  <p>No comments yet!</p>
+	<% end %>
+</div><!-- .goal_section -->
+
+<div class="goal_section">
+	<%= form_for @comment do |f| -%>
+		<% if @comment.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+				<ul>
+				<% @comment.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+				</ul>
+			</div>
+		<% end %>
 	
-	<%= f.hidden_field :goal_id, :value => @goal.id %>
+		<%= f.hidden_field :goal_id, :value => @goal.id %>
 	
-  <p>@<%= current_user.username %><br />
-	<%= f.text_area :body %></p>
+	  <h3>Add a comment</h3>
+		<%= f.text_area :body, :size => "50x10" %></p>
 	
-	<p class="button"><%= f.submit "Comment" %></p>
-<% end -%>
+		<p class="button"><%= f.submit "Comment" %></p>
+	<% end -%>
+</div><!-- .goal_section -->

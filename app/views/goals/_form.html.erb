@@ -1,0 +1,33 @@
+<%= form_for @goal do |f| -%>
+	<% if @goal.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@goal.errors.count, "error") %> prohibited this goal from being saved:</h2>
+
+			<ul>
+			<% @goal.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+  <p><%= f.label :name %><br />
+  <%= f.text_field :name %></p>
+
+	<p><%= f.label :privacy %><br />
+	<%= f.select :privacy, ["Public", "Friends", "Private"] %></p>
+	
+	<p><%= f.label :category_id %><br />
+	<%= f.select :category_id, Category.all.collect { |c| [c.name, c.id] } %></p>
+	
+	<p><%= f.label :tag_names, "Tags (comma separated)" %><br />
+	<%= f.text_field :tag_names %></p>
+	
+	<p><%= f.label :timeline %><br />
+	<%= f.label "Day" %> <%= f.select(:day, options_for_select(0..30)) %>
+	<%= f.label "Month" %> <%= f.select(:month, options_for_select(0..11)) %>
+	<%= f.label "Year" %> <%= f.select(:year, options_for_select(0..10)) %>
+	</p>
+	
+	<p class="button"><%= f.submit %></p>
+<% end -%>
