@@ -1,0 +1,29 @@
+<h1>New Goal</h1>
+<p>Do some shit bro.</p>
+
+<% form_for @goal do |f| -%>
+	<% if @goal.errors.any? %>
+	  <div class="error_messages">
+	    <h2>Form is invalid</h2>
+	    <ul>
+	      <% for message in @goal.errors.full_messages %>
+	        <li><%= message %></li>
+	      <% end %>
+	    </ul>
+	  </div>
+	<% end %>
+
+  <p><%= f.label :name %><br />
+  <%= f.text_field :name %></p>
+
+	<p><%= f.label :privacy %><br />
+	<%= f.select :privacy, ["Public", "Friends", "Private"] %></p>
+	
+	<p><%= f.label :timeline %><br />
+	<%= label_tag "Day" %><%= select_tag(:day, options_for_select(0..30)) %><br />
+	<%= label_tag "Month" %><%= select_tag(:month, options_for_select(0..11)) %><br />
+	<%= label_tag "Year" %><%= select_tag(:year, options_for_select(0..10)) %><br />
+	</p>
+	
+	<p class="button"><%= f.submit "Create" %></p>
+<% end -%>
