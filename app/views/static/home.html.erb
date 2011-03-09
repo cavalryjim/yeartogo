@@ -1,2 +1,42 @@
-<h1>Static#home</h1>
-<p>Find me in app/views/static/home.html.erb</p>
+<h2>Set goals. Invite friends. Get accountability. Accomplish.</h2>
+<p>YearToGo.com is a socially-integrated goal visioning site that helps you map out your goals, stay accountable to them, and get your friends involved in making them a success.</p>
+
+<div class="home_bucket">
+	<h3>Goals Completed.</h3>
+	<ul>
+		<% if !@completed.blank? %>
+		  <% for complete in @completed %>
+		    <li><%= complete.name %></li>
+		  <% end %>
+		<% else %>
+		  
+		<% end %>
+	</ul>
+</div><!-- .home_bucket 1 -->
+<div class="home_bucket">
+	<h3>Top Categories.</h3>
+	<ul>
+		<% if !@categories.blank? %>
+		  <% for category in @categories %>
+		    <li><%= category.name %></li>
+		  <% end %>
+		<% else %>
+		  
+		<% end %>
+	</ul>
+</div><!-- .home_bucket 2 -->
+<div class="home_bucket">
+	<h3>Motivated List.</h3>
+	<ul>
+		<% if !@completed.blank? %>
+		  <% for complete in @completed %>
+		    <li><%= complete.user.name %></li>
+		  <% end %>
+		<% else %>
+		  
+		<% end %>
+	</ul>
+</div><!-- .home_bucket 3 -->
+<div class="clear"></div>
+
+<h3><%= link_to "Sign up now", register_path %> &mdash; start accomplishing in 30 seconds.</h3>
