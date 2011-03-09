@@ -33,7 +33,8 @@ class Goal < ActiveRecord::Base
 		completion += 10 if self.name.present?
 		completion += 10 if self.category.present?
 		completion += 20 if self.timeline.present?
-		completion += [60 * (0.1 * self.milestones.count), 60].min
+		completion += [10 * (0.1 * self.tags.count), 60].min if self.tags.count > 0
+		completion += [50 * (0.1 * self.milestones.count), 60].min if self.milestones.count > 0
 		self.completion = [100, completion].min
 	end
 	
