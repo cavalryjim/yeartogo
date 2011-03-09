@@ -24,7 +24,7 @@ Yeartogo::Application.routes.draw do
 	get "login" => "sessions#new", :as => "login"
 	post "login" => "sessions#create", :as => "sessions"
 	get "register" => "users#new", :as => "register"
-	get "/:user" => "users#show", :as => "profile"
+	get "/:username" => "users#show", :as => "profile"
 	root :to => "static#home"
 	
 	# REST for iPhone

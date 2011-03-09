@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   def show
-		if params[:id]
+		if params[:id].present?
 			@user = User.find(params[:id])
+		elsif params[:username].present?
+			@user = User.find_by_username(params[:username])
 		else
 			@user = current_user
 		end
