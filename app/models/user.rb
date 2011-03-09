@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 	has_many :goals
 	
-	attr_accessible :email, :password, :password_confirmation, :avatar, :name, :username, :location
+	attr_accessible :email, :password, :password_confirmation, :avatar, :name, :username, :location, :about
 	attr_accessor :password
 	
 	before_save :encrypt_password
