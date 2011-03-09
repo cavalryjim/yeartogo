@@ -229,3 +229,15 @@ ul#comments {
       .comment_data p {
         width: 575px;
       }
+
+/* Form styles ----------------------------------------------- */
+label {
+  font-weight: bold;
+}
+form p {
+  padding-bottom: 25px;
+}
+.sexy_input {
+  border: 1px solid #63686b;
+  padding: 5px;
+}
