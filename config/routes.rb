@@ -9,8 +9,6 @@ Yeartogo::Application.routes.draw do
 		get "/friends/approve/:username" => "friendships#approve", :as => "approve"
 		get "/goals/:id/complete" => "goals#complete", :as => "complete"
 		root :to => "users#show"
-		resources :goals
-		resources :comments
 	end
 	
 	# Static, not logged in
@@ -34,4 +32,6 @@ Yeartogo::Application.routes.draw do
 	
 	# REST for iPhone
 	resources :users
+	resources :goals
+	resources :comments
 end
