@@ -14,10 +14,10 @@ class User < ActiveRecord::Base
 	validates_presence_of :username
 	validates_uniqueness_of :username
 	
-	def self.authenticate(email, password)
-	  person = find_by_email(email)
-	  if person && BCrypt::Password.new(person.password_hash) == password
-	    person
+	def self.authenticate(username, password)
+	  user = find_by_username(username)
+	  if user && BCrypt::Password.new(user.password_hash) == password
+	    user
 	  else
 	    nil
 	  end
