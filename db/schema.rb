@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110309164301) do
+ActiveRecord::Schema.define(:version => 20110309213546) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20110309164301) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.boolean  "completed"
+    t.boolean  "completed",   :default => false
     t.integer  "completion"
     t.integer  "category_id"
   end
