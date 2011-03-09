@@ -11,7 +11,7 @@
   <p>No comments yet!</p>
 <% end %>
 
-<% form_for @comment do |f| -%>
+<%= form_for @comment do |f| -%>
 	<% if @comment.errors.any? %>
 	  <div class="error_messages">
 	    <h2>Form is invalid</h2>
