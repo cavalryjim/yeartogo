@@ -1,6 +1,8 @@
 Yeartogo::Application.routes.draw do
 	# Logged in
 	constraints lambda { |req| !req.session[:user_id].blank? } do
+		get "profile" => "users#show", :as => "current_profile"
+		get "profile/edit" => "users#edit", :as => "edit_profile"
 		root :to => "static#home"
 		resources :goals
 		resources :comments
@@ -13,7 +15,6 @@ Yeartogo::Application.routes.draw do
 		get "terms" => "static#terms"
 		get "privacy" => "static#privacy"
 	end
-	get "/:user" => "users#show", :as => "profile"
 	get "recover" => "users#recover", :as => "recovery"
 	post "send_recovery" => "users#send_recovery", :as => "send_recovery"
 	get "reset/:token" => "users#reset_form", :as => "reset_form"
@@ -23,6 +24,7 @@ Yeartogo::Application.routes.draw do
 	get "login" => "sessions#new", :as => "login"
 	post "login" => "sessions#create", :as => "sessions"
 	get "register" => "users#new", :as => "register"
+	get "/:user" => "users#show", :as => "profile"
 	root :to => "static#home"
 	
 	# REST for iPhone
