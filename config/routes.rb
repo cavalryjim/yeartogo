@@ -3,7 +3,7 @@ Yeartogo::Application.routes.draw do
 	constraints lambda { |req| !req.session[:user_id].blank? } do
 		get "profile" => "users#show", :as => "current_profile"
 		get "profile/edit" => "users#edit", :as => "edit_profile"
-		root :to => "static#home"
+		root :to => "users#show"
 		resources :goals
 		resources :comments
 	end
