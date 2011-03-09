@@ -2,7 +2,7 @@ Yeartogo::Application.routes.draw do
 	# Logged in
 	constraints lambda { |req| !req.session[:user_id].blank? } do
 		root :to => "static#home"
-		resource :goals
+		resources :goals
 	end
 	
 	# Static, not logged in
