@@ -34,11 +34,36 @@
 </div><!-- #profile_left -->
 
 <div id="profile_right">
-	<h2>Goals</h2>
-	<% if !@user.goals.blank? %>
-	  <% for goal in @user.goals %>
-	    <%= link_to "#{goal.name}", goal %>
-	  <% end %>
-	<% end %>
+	<div class="profile_goal_list">
+		<h2>Ongoing Goals &mdash; <%= @user.goals.find_all_by_completed(false).count %></h2>
+		<% if !@user.goals.find_all_by_completed(false).blank? %>
+			<ul>
+				  <% for goal in @user.goals.find_all_by_completed(false) %>
+				    <li><%= link_to "#{goal.name}", goal %>
+						due in <%= distance_of_time_in_words(goal.timeline, Date.today) %> &middot;
+						<%= goal.comments.count %> comments &middot;
+						<%= goal.milestones.count %> milestones
+						</li>
+				  <% end %>
+			</ul>
+		<% else %>
+		<p>No ongoing goals &mdash; <%= link_to "add one now", new_goal_path %>!</p>
+		<% end %>	
+	</div><!-- .profile_goal_list -->			
+	
+	<div class="profile_goal_list">
+		<h2>Completed Goals &mdash; <%= @user.goals.find_all_by_completed(true).count %></h2>
+		<% if !@user.goals.find_all_by_completed(true).blank? %>
+			<ul>
+				  <% for goal in @user.goals.find_all_by_completed(true) %>
+				    <li><%= link_to "#{goal.name}", goal %>
+						due in <%= distance_of_time_in_words(goal.timeline, Date.today) %> &middot;
+						<%= goal.comments.count %> comments &middot;
+						<%= goal.milestones.count %> milestones
+						</li>
+				  <% end %>
+			</ul>
+		<% end %>
+	</div><!-- .profile_goal_list -->	
 </div><!-- #profile_right -->
 <div class="clear"></div>
