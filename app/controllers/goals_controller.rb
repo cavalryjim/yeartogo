@@ -5,17 +5,9 @@ class GoalsController < ApplicationController
 
   def create
 		@goal = Goal.create(params[:goal])
-		case params[:goal][:privacy]
-		when "Public"
-			@goal.privacy = 1
-		when "Friends"
-			@goal.privacy = 2
-		when "Private"
-			@goal.privacy = 3
-		end
-		@goal.timeline = Time.now.advance(:days => params[:goal][:days].to_i, 
+		@goal.timeline = Time.now.advance(:days => params[:goal][:day].to_i, 
 																			:months => params[:goal][:month].to_i,
-																			:years => params[:goal][:years].to_i)
+																			:years => params[:goal][:year].to_i)
 		@goal.user = current_user
 		if @goal.save
 			redirect_to @goal, :notice => "Goal successfully created! Get on it."
@@ -41,19 +33,11 @@ class GoalsController < ApplicationController
 
   def update
 		@goal = Goal.find(params[:id])
-		case params[:goal][:privacy]
-		when "Public"
-			@goal.privacy = 1
-		when "Friends"
-			@goal.privacy = 2
-		when "Private"
-			@goal.privacy = 3
-		end
 		@goal.timeline = Time.now.advance(:days => params[:goal][:days].to_i, 
 																			:months => params[:goal][:month].to_i,
 																			:years => params[:goal][:years].to_i)
 		@goal.user = current_user
-		if @goal.attributes
+		if @goal.update_attributes
 			redirect_to @goal, :notice => "Goal successfully updated! Get back to it."
 		else
 			flash[:notice] = "Error updating goal. Please try again."
