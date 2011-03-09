@@ -13,7 +13,7 @@
 				<h1 id="logo"><%= link_to "year to go", root_url %></h1>
 				<div id="nav">
 				<% if current_user %>
-					<%= link_to "Home", root_path %>
+					<!-- Hello, <strong><%= current_user.display_name %></strong> -->
 					<%= link_to "Profile", current_profile_path %>
 					<%= link_to "Log out", logout_path %>
 				<% else %>
