@@ -1,0 +1,8 @@
+Hello <%= @greeting %>,
+
+Thanks for signing up to year to go! Soon, you'll be able to enjoy sharing your goals with friends and being held accountable to complete them. Click the link below to activate your account and get started.
+
+<%= activate_url(@user.activate_token, :host => "yeartogo.com") %>
+
+Cheers,
+year to go
