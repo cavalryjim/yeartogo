@@ -17,15 +17,15 @@ class Goal < ActiveRecord::Base
 	before_save :set_completion
 	
 	def private?
-		(privacy == 1)
+		(privacy == 3)
 	end
 	
 	def public?
-		(privacy == 2)
+		(privacy == 1)
 	end
 	
 	def friends?
-		(privacy == 3)
+		(privacy == 2)
 	end
 	
 	def set_completion
