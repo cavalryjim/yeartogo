@@ -13,9 +13,9 @@ class GoalsController < ApplicationController
 		when "Private"
 			@goal.privacy = 3
 		end
-		@goal.timeline = Time.now.advance(:days => params[:goal][:days], 
-																			:months => params[:goal][:month],
-																			:years => params[:goal][:years])
+		@goal.timeline = Time.now.advance(:days => params[:goal][:days].to_i, 
+																			:months => params[:goal][:month].to_i,
+																			:years => params[:goal][:years].to_i)
 		@goal.user = current_user
 		if @goal.save
 			redirect_to @goal, :notice => "Goal successfully created! Get on it."
@@ -25,13 +25,49 @@ class GoalsController < ApplicationController
 		end
   end
 
+	def complete
+		@goal = Goal.find(params[:id])
+		@goal.completed = true
+		if @goal.save
+			redirect_to current_profile_path, :notice => "Goal marked complete. Congratulations!"
+		else
+			redirect_to @goal, :notice => "Error marking goal complete. Please try again."
+		end
+	end
+
   def edit
+		@goal = Goal.find(params[:id])
   end
 
   def update
+		@goal = Goal.find(params[:id])
+		case params[:goal][:privacy]
+		when "Public"
+			@goal.privacy = 1
+		when "Friends"
+			@goal.privacy = 2
+		when "Private"
+			@goal.privacy = 3
+		end
+		@goal.timeline = Time.now.advance(:days => params[:goal][:days].to_i, 
+																			:months => params[:goal][:month].to_i,
+																			:years => params[:goal][:years].to_i)
+		@goal.user = current_user
+		if @goal.attributes
+			redirect_to @goal, :notice => "Goal successfully updated! Get back to it."
+		else
+			flash[:notice] = "Error updating goal. Please try again."
+			render "edit"
+		end
   end
 
   def destroy
+		@goal = Goal.find(params[:id])
+		if @goal.destroy
+			redirect_to current_profile_path, :notice => "Goal successfully deleted."
+		else
+			redirect_to @goal, :notice => "Error deleting goal. Please try again."
+		end
   end
 
 	def show
