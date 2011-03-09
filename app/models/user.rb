@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
 	  end
 	end
 	
-	def self.display_name
+	def display_name
 		name || username
 	end
 
