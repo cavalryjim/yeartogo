@@ -1,0 +1,32 @@
+<h1>Goal: <%= @goal.name %></h1>
+<p>Timeline: <%= @goal.timeline %></p>
+
+<h2>Comments</h2>
+<% if !@goal.comments.blank? %>
+  <% for comment in @goal.comments %>
+    <%= link_to "@#{comment.user.username}", profile_path(comment.user.username) %><br />
+		<%= comment.body %>
+  <% end %>
+<% else %>
+  <p>No comments yet!</p>
+<% end %>
+
+<% form_for @comment do |f| -%>
+	<% if @comment.errors.any? %>
+	  <div class="error_messages">
+	    <h2>Form is invalid</h2>
+	    <ul>
+	      <% for message in @comment.errors.full_messages %>
+	        <li><%= message %></li>
+	      <% end %>
+	    </ul>
+	  </div>
+	<% end %>
+	
+	<%= f.hidden_field :goal_id, :value => @goal.id %>
+	
+  <p>@<%= current_user.username %><br />
+	<%= f.text_area :body %></p>
+	
+	<p class="button"><%= f.submit "Comment" %></p>
+<% end -%>
