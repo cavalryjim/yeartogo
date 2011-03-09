@@ -1,0 +1,10 @@
+<h2>Pending Friend Requests</h2>
+
+<% if !@friendships.blank? %>
+  <% for friendship in @friendships %>
+    <%= link_to "#{friendship.user.username}", profile_path(friendship.user.username) %>
+		<%= link_to "approve", approve_path(friendship.user.username) %>
+  <% end %>
+<% else %>
+  No pending requests.
+<% end %>
