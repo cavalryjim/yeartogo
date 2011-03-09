@@ -1,5 +1,6 @@
-<h1>Goal: <%= @goal.name %></h1>
-<p>Timeline: <%= @goal.timeline %></p>
+<h2><%= @goal.name %> / <%= @goal.category.name %></h2>
+<p>Due in <%= distance_of_time_in_words(@goal.timeline, Date.today) %></p>
+<p>Completion: <%= number_to_percentage(@goal.completion, :precision => 0) %></p>
 
 <h2>Comments</h2>
 <% if !@goal.comments.blank? %>
@@ -13,14 +14,15 @@
 
 <%= form_for @comment do |f| -%>
 	<% if @comment.errors.any? %>
-	  <div class="error_messages">
-	    <h2>Form is invalid</h2>
-	    <ul>
-	      <% for message in @comment.errors.full_messages %>
-	        <li><%= message %></li>
-	      <% end %>
-	    </ul>
-	  </div>
+		<div id="error_explanation">
+			<h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+			<ul>
+			<% @comment.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
 	<% end %>
 	
 	<%= f.hidden_field :goal_id, :value => @goal.id %>

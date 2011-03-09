@@ -1,5 +1,11 @@
 <div id="profile_left">
-	<h2>@<%= @user.username %></h2>
+	<h2>
+	<% if @user.name.present? %>
+	<%= @user.name %><br />@<%= @user.username %>
+	<% else %>
+	@<%= @user.username %>
+	<% end %>
+	</h2>
 	<%= image_tag(@user.avatar_url(:big)) if @user.avatar? %>
 	<br />
 	<% if @user != current_user %>
@@ -12,6 +18,9 @@
 		<% end %>
 	<% end %>
 	<ul id="profile_meta">
+		<% if @user == current_user %>
+		<li><%= link_to "Edit profile", edit_profile_path %></li>
+		<% end %>
 		<% if @user.name.present? %>
 		<li><%= @user.name %></li>
 		<% end %>
@@ -28,10 +37,8 @@
 	<h2>Goals</h2>
 	<% if !@user.goals.blank? %>
 	  <% for goal in @user.goals %>
-	    <%= goal.name %>
+	    <%= link_to "#{goal.name}", goal %>
 	  <% end %>
-	<% else %>
-
 	<% end %>
 </div><!-- #profile_right -->
 <div class="clear"></div>

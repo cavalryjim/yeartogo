@@ -1,15 +1,16 @@
 <h1>Edit profile</h1>
 
 <%= form_for @user, :html => {:multipart => true} do |f| -%>
-  <% if @user.errors.any? %>
-	  <div class="error_messages">
-	    <h2>Form is invalid</h2>
-	    <ul>
-	      <% for message in @user.errors.full_messages %>
-	        <li><%= message %></li>
-	      <% end %>
-	    </ul>
-	  </div>
+	<% if @user.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@user.errors.count, "error") %> prohibited your account from being saved:</h2>
+
+			<ul>
+			<% @user.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ul>
+		</div>
 	<% end %>
 	
 	<p><%= f.label :name %><br />
@@ -30,5 +31,5 @@
 	<p><%= f.label :avatar %><br />
 	<%= f.file_field :avatar %></p>
 	
-	<p class="button"><%= f.submit "Update profile" %></p>
+	<div class="form_action"><%= f.submit "Update profile" %></div>
 <% end -%>
