@@ -15,7 +15,7 @@
   <%= f.text_field :name %></p>
 
 	<p><%= f.label :privacy %><br />
-	<%= f.select :privacy, ["Public", "Friends", "Private"] %></p>
+	<%= f.select :privacy, [["Public",1], ["Friends",2], ["Private",3]] %></p>
 	
 	<p><%= f.label :category_id %><br />
 	<%= f.select :category_id, Category.all.collect { |c| [c.name, c.id] } %></p>
