@@ -29,6 +29,7 @@ GEM
       activesupport (= 3.0.5)
     activesupport (3.0.5)
     arel (2.0.9)
+    bcrypt-ruby (2.1.4)
     builder (2.1.2)
     capistrano (2.5.19)
       highline
@@ -86,6 +87,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby
   capistrano
   carrierwave
   mysql2

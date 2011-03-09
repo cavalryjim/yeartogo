@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110308232538) do
+ActiveRecord::Schema.define(:version => 20110309014536) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(:version => 20110308232538) do
     t.datetime "updated_at"
     t.boolean  "activated"
     t.string   "name"
+    t.string   "recovery"
+    t.string   "activate_token"
   end
 
 end
