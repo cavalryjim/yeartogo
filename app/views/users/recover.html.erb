@@ -1,0 +1,9 @@
+<h2>Recover password</h2>
+
+<p>Forgot your password? No worries. Just fill in your email address below and they'll hand deliver it to your email.</p>
+
+<%= form_tag(:action => "send_recovery") do %>
+  <%= label_tag :email %>
+	<%= text_field_tag :email %>
+	<%= submit_tag "Submit" %>
+<% end -%>

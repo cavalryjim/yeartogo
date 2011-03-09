@@ -1,0 +1,14 @@
+<h2>Reset password</h2>
+
+<p>Use the form below to reset your password.</p>
+
+<%= form_tag(:action => "reset_password") do %>
+	<%= hidden_field_tag :token, params[:token] %>
+  <p><%= label_tag :password %><br />
+	<%= password_field_tag :password %></p>
+	
+	<p><%= label_tag :password_confirmation %><br />
+	<%= password_field_tag :password_confirmation %></p>
+	
+	<p><%= submit_tag "Submit" %></p>
+<% end -%>
