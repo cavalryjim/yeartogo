@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
   def show
+		if params[:id]
+			@user = User.find(params[:id])
+		else
+			@user = current_user
+		end
   end
 
   def new
@@ -20,9 +25,16 @@ class UsersController < ApplicationController
   end
 
   def edit
+		@user = current_user
   end
 
   def update
+		@user = current_user
+		if @user.update_attributes(params[:user])
+			redirect_to current_profile_path, :notice => "Your profile has been updated!"
+		else
+			redirect_to edit_profile_path, :notice => "Error updating your profile."
+		end
   end
 
 	def activate

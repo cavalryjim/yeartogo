@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
 	validates_presence_of :username
 	validates_uniqueness_of :username
 	
+	mount_uploader :avatar, ImageUploader
+	
 	def self.authenticate(username, password)
 	  user = find_by_username(username)
 	  if user && BCrypt::Password.new(user.password_hash) == password
