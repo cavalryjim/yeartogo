@@ -1,15 +1,17 @@
 <div id="profile_left">
 	<h2>@<%= @user.username %></h2>
 	<%= image_tag(@user.avatar_url(:big)) if @user.avatar? %>
-	<% if @user.name.present? %>
-	<p><%= @user.name %></p>
-	<% end %>
-	<% if @user.location.present? %>
-	<p><%= @user.location %></p>
-	<% end %>
-	<% if @user.about.present? %>
-	<p><%= @user.about %></p>
-	<% end %>
+	<ul id="profile_meta">
+		<% if @user.name.present? %>
+		<li><%= @user.name %></li>
+		<% end %>
+		<% if @user.location.present? %>
+		<li><%= @user.location %></li>
+		<% end %>
+		<% if @user.about.present? %>
+		<li><%= @user.about %></li>
+		<% end %>		
+	</ul>
 </div><!-- #profile_left -->
 
 <div id="profile_right">
