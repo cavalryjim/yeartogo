@@ -7,6 +7,7 @@ Yeartogo::Application.routes.draw do
 		get "/:username/unfriend" => "friendships#destroy", :as => "unfriend"
 		get "/friends/pending" => "friendships#pending", :as => "pending"
 		get "/friends/approve/:username" => "friendships#approve", :as => "approve"
+		get "/goals/:id/complete" => "goals#complete", :as => "complete"
 		root :to => "users#show"
 		resources :goals
 		resources :comments
