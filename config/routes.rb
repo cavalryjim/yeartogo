@@ -12,6 +12,7 @@ Yeartogo::Application.routes.draw do
 		get "terms" => "static#terms"
 		get "privacy" => "static#privacy"
 	end
+	get "/:user" => "users#show", :as => "profile"
 	get "recover" => "users#recover", :as => "recovery"
 	post "send_recovery" => "users#send_recovery", :as => "send_recovery"
 	get "reset/:token" => "users#reset_form", :as => "reset_form"
