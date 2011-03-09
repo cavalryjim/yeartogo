@@ -12,7 +12,7 @@
 	<% end %>
 
   <p><%= f.label :name %><br />
-  <%= f.text_field :name %></p>
+  <%= f.text_field :name, :class => "sexy_input" %></p>
 
 	<p><%= f.label :privacy %><br />
 	<%= f.select :privacy, [["Public",1], ["Friends",2], ["Private",3]] %></p>
@@ -21,12 +21,12 @@
 	<%= f.select :category_id, Category.all.collect { |c| [c.name, c.id] } %></p>
 	
 	<p><%= f.label :tag_names, "Tags (comma separated)" %><br />
-	<%= f.text_field :tag_names %></p>
+	<%= f.text_field :tag_names, :class => "sexy_input" %></p>
 	
-	<p><%= f.label :timeline %><br />
-	<%= f.label "Day" %> <%= f.select(:day, options_for_select(0..30)) %>
-	<%= f.label "Month" %> <%= f.select(:month, options_for_select(0..11)) %>
-	<%= f.label "Year" %> <%= f.select(:year, options_for_select(0..10)) %>
+	<p>Deadline<br />
+	<%= f.label :day %> <%= f.select(:day, options_for_select(0..30,(params[:goal][:day] if params[:goal].present?))) %>
+	<%= f.label :month %> <%= f.select(:month, options_for_select(0..11,(params[:goal][:month] if params[:goal].present?))) %>
+	<%= f.label :year %> <%= f.select(:year, options_for_select(0..10,(params[:goal][:year] if params[:goal].present?))) %>
 	</p>
 	
 	<p class="button"><%= f.submit %></p>
