@@ -34,7 +34,7 @@
 </div><!-- #profile_left -->
 
 <div id="profile_right">
-	<%= link_to "Add another goal.", new_goal_path %>
+	<%= link_to "Add a goal.", new_goal_path %>
 	
 	<div class="profile_goal_list">
 		<h2>Ongoing Goals &mdash; <%= @user.goals.find_all_by_completed(false).count %></h2>
