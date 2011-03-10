@@ -1,0 +1,15 @@
+<h2><%= @category.name %> has <%= @goals.count %> goals.</h2>
+
+<% if !@goals.blank? %>
+	<ul id="goals">
+  <% for goal in @goals %>
+    <li><%= link_to "#{goal.name}", goal %>
+		due in <%= distance_of_time_in_words(goal.timeline, Date.today) %> &middot;
+		<%= goal.comments.count %> comments &middot;
+		<%= goal.milestones.count %> milestones
+		</li>
+  <% end %>
+	</ul>
+<% else %>
+  <p>There are no goals in this category?! Make one <%= link_to "now", new_goal_path %>!</p>
+<% end %>
