@@ -112,15 +112,15 @@ table tr td {
   h1#logo {
     margin: 0;
     padding: 12px 0;
-    width: 199px;
-    height: 35px;
+    width: 192px;
+    height: 41px;
     float: left;
   } 
   h1#logo a {
     background: url('/images/logo_header.png') no-repeat;
     text-indent: -10000em;
-    width: 199px;
-    height: 35px;
+    width: 192px;
+    height: 41px;
     display: block;
     margin: 0;
   }
@@ -168,6 +168,9 @@ table tr td {
   width: 325px;
   margin-right: 5px;
   margin-top: 15px;
+}
+.home_bucket ul {
+  list-style-type: none;
 }
 
 /* Profile styles -------------------------------------------- */
