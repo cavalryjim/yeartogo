@@ -23,11 +23,8 @@
 	<p><%= f.label :tag_names, "Tags (comma separated)" %><br />
 	<%= f.text_field :tag_names, :class => "sexy_input" %></p>
 	
-	<p>Deadline<br />
-	<%= f.label :day %> <%= f.select(:day, options_for_select(0..30,(params[:goal][:day] if params[:goal].present?))) %>
-	<%= f.label :month %> <%= f.select(:month, options_for_select(0..11,(params[:goal][:month] if params[:goal].present?))) %>
-	<%= f.label :year %> <%= f.select(:year, options_for_select(0..10,(params[:goal][:year] if params[:goal].present?))) %>
-	</p>
+	<p><%= f.label :timeline, "Deadline" %><br />
+	<%= f.date_select :timeline, :add_month_numbers => true %></p>
 	
 	<p class="button"><%= f.submit %></p>
 <% end -%>
