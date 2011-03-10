@@ -2,11 +2,11 @@
 <p>YearToGo.com is a socially-integrated goal visioning site that helps you map out your goals, stay accountable to them, and get your friends involved in making them a success.</p>
 
 <div class="home_bucket">
-	<h3>Goals Completed.</h3>
+	<h3>Recently Completed Goals.</h3>
 	<ul>
 		<% if !@completed.blank? %>
 		  <% for complete in @completed %>
-		    <li><%= complete.name %></li>
+		    <li><%= link_to complete.name, goal_path(complete) %></li>
 		  <% end %>
 		<% else %>
 		  
@@ -28,9 +28,9 @@
 <div class="home_bucket">
 	<h3>Motivated List.</h3>
 	<ul>
-		<% if !@completed.blank? %>
-		  <% for complete in @completed %>
-		    <li><%= complete.user.name %></li>
+		<% if !@motivated.blank? %>
+		  <% for motivated in @motivated %>
+		    <li><%= link_to motivated.display_name, profile_path(complete.user) %></li>
 		  <% end %>
 		<% else %>
 		  
