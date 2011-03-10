@@ -209,6 +209,17 @@ ul#profile_meta {
 .goal_section {
   padding-bottom: 15px;
 }
+ul#goals {
+  list-style-type: none;
+}
+  ul#goals li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #043552;
+  }
+  ul#goals li a {
+    font-size: 1.25em;
+  }
+
   
 /* Comment styles -------------------------------------------- */
 ul#comments {

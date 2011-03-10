@@ -18,7 +18,7 @@
 	<ul>
 		<% if !@categories.blank? %>
 		  <% for category in @categories %>
-		    <li><%= category.name %></li>
+		    <li><%= link_to category.name, category_path(category.name.downcase) %></li>
 		  <% end %>
 		<% else %>
 		  

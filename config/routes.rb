@@ -1,4 +1,6 @@
 Yeartogo::Application.routes.draw do
+  get "categories/show"
+
 	# Logged in
 	constraints lambda { |req| !req.session[:user_id].blank? } do
 		get "profile" => "users#show", :as => "current_profile"
@@ -28,6 +30,7 @@ Yeartogo::Application.routes.draw do
 	post "login" => "sessions#create", :as => "sessions"
 	get "register" => "users#new", :as => "register"
 	get "/:username" => "users#show", :as => "profile"
+	get "/category/:name" => "categories#show", :as => "category"
 	root :to => "static#home"
 	
 	# REST for iPhone
