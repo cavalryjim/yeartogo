@@ -12,6 +12,19 @@
 </div><!-- .goal_section -->
 
 <div class="goal_section">
+	<h3>Milestones</h3>
+	<% if !@goal.milestones.blank? %>
+		<ul id="comments">
+	  <% for milestone in @goal.milestones %>
+			<li><p><%= milestone.name %> / Due in <%= distance_of_time_in_words(milestone.timeline, Date.today) %></p></li>
+	  <% end %>
+		</ul>
+	<% else %>
+	  <p>No milestones yet! <%= link_to "Add some now.", milestones_path(@goal) %></p>
+	<% end %>
+</div><!-- .goal_section -->
+
+<div class="goal_section">
 	<h3>Comments</h3>
 	<% if !@goal.comments.blank? %>
 		<ul id="comments">
