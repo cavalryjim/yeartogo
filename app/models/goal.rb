@@ -13,7 +13,6 @@ class Goal < ActiveRecord::Base
 	validates_presence_of :timeline
 	
 	attr_writer :tag_names
-	attr_accessor :day, :month, :year
 	before_save :set_completion
 	
 	def private?

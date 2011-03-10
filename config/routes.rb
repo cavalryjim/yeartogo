@@ -1,6 +1,4 @@
 Yeartogo::Application.routes.draw do
-  get "categories/show"
-
 	# Logged in
 	constraints lambda { |req| !req.session[:user_id].blank? } do
 		get "profile" => "users#show", :as => "current_profile"
@@ -10,6 +8,8 @@ Yeartogo::Application.routes.draw do
 		get "/friends/pending" => "friendships#pending", :as => "pending"
 		get "/friends/approve/:username" => "friendships#approve", :as => "approve"
 		get "/goals/:id/complete" => "goals#complete", :as => "complete"
+		get "/goals/:id/milestones" => "goals#milestones", :as => "milestones"
+		put "/goals/:id/milestones" => "goals#add_milestones", :as => "add_milestones"
 		root :to => "users#show"
 	end
 	
