@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110309213546) do
+ActiveRecord::Schema.define(:version => 20110310220956) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -48,11 +48,10 @@ ActiveRecord::Schema.define(:version => 20110309213546) do
 
   create_table "milestones", :force => true do |t|
     t.string   "name"
-    t.integer  "type"
-    t.integer  "serial"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "goal_id"
+    t.datetime "timeline"
   end
 
   create_table "taggings", :force => true do |t|
