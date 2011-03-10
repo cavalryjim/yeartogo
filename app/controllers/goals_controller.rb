@@ -5,12 +5,9 @@ class GoalsController < ApplicationController
 
   def create
 		@goal = Goal.create(params[:goal])
-		@goal.timeline = Time.now.advance(:days => params[:goal][:day].to_i, 
-																			:months => params[:goal][:month].to_i,
-																			:years => params[:goal][:year].to_i)
 		@goal.user = current_user
 		if @goal.save
-			redirect_to @goal, :notice => "Goal successfully created! Get on it."
+			redirect_to milestones_path(@goal), :notice => "Goal successfully created! Now, set some milestones."
 		else
 			flash[:notice] = "Error creating goal. Please try again."
 			render "new"
@@ -33,9 +30,6 @@ class GoalsController < ApplicationController
 
   def update
 		@goal = Goal.find(params[:id])
-		@goal.timeline = Time.now.advance(:days => params[:goal][:days].to_i, 
-																			:months => params[:goal][:month].to_i,
-																			:years => params[:goal][:years].to_i)
 		@goal.user = current_user
 		if @goal.update_attributes
 			redirect_to @goal, :notice => "Goal successfully updated! Get back to it."
@@ -62,5 +56,18 @@ class GoalsController < ApplicationController
 			redirect_to profile_path, :notice => "You don't have permission to view that goal."
 		end
 		@comment = Comment.new
+	end
+	
+	def milestones
+		@goal = Goal.find(params[:id])
+		5.times { @goal.milestones.build }
+	end
+	
+	def add_milestones
+		@goal = Goal.find(params[:id])
+		params[:milestones].each_value do |m|
+			@goal.milestones << Milestone.create(m) unless m.each.all?(&:blank?)
+		end
+	  redirect_to goal_path(@goal), :notice => "Milestones added!"
 	end
 end
