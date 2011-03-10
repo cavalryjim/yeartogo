@@ -6,7 +6,7 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-Category.create([{:name => "Financial"}, {:name => "Health"}, {:name => "Education"}, {:name => "Travel"}
+Category.create([{:name => "Financial"}, {:name => "Health"}, {:name => "Education"}, {:name => "Travel"},
 								{:name => "Career"}])
 								
 # Goal.create(:name="Run 50 Marathons",timeline="0 0 0")
