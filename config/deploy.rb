@@ -1,22 +1,33 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+default_run_options[:pty] = true
+set :application, "mynight"
+set :repository,  "git@github.com:lleger/yeartogo.git"
+set :branch, "master"
+set :deploy_via, :remote_cache
 
-set :scm, :subversion
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :config_files, %w( database.yml )
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+set :scm, :git
+set :scm_username, "lleger"
 
-# If you are using Passenger mod_rails uncomment this:
-# if you're still using the script/reapear helper you will need
-# these http://github.com/rails/irs_process_scripts
+set :deploy_to, "/var/railsapps/fulfilld"
 
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+role :web, "173.230.141.183"                          # Your HTTP server, Apache/etc
+role :app, "173.230.141.183"                          # This may be the same as your `Web` server
+role :db,  "173.230.141.183", :primary => true # This is where Rails migrations will run
+
+set :use_sudo, false
+set :user, 'capistrano'
+
+namespace :deploy do
+  desc "Restarting mod_rails with restart.txt"
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "touch #{current_path}/tmp/restart.txt"
+    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml" 
+		run "chmod -R 777 #{release_path}/public/"
+  end
+
+  [:start, :stop].each do |t|
+    desc "#{t} task is a no-op with mod_rails"
+    task t, :roles => :app do ; end
+  end
+end
