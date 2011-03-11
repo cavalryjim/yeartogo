@@ -1,7 +1,7 @@
 <div class="goal_section">
 	<h2><%= @goal.name %><% if @goal.category.present? %> / <%= @goal.category.name %><% end %></h2>
 	<% if current_user %><%= link_to "edit", edit_goal_path(@goal) %> &middot; <%= link_to "delete", @goal, :confirm => 'Are you sure?', :method => :delete %><% unless @goal.completed? %> &middot; <%= link_to "complete", complete_path(@goal.id) %><% end %><% end %>
-	<p><% if @goal.user != current_user %><%= link_to @goal.user.display_name, profile_path(@goal.user) %> / <% end %>Due in <%= distance_of_time_in_words(@goal.timeline, Date.today) %> / <%= number_to_percentage(@goal.completion, :precision => 0) %> goal profile completeness</p>
+	<p><% if @goal.user != current_user %><%= link_to @goal.user.display_name, profile_path(@goal.user.username) %> / <% end %>Due in <%= distance_of_time_in_words(@goal.timeline, Date.today) %> / <%= number_to_percentage(@goal.completion, :precision => 0) %> goal profile completeness</p>
 </div><!-- .goal_section -->
 
 <div class="goal_section">
