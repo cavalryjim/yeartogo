@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Yeartogo::Application.config.secret_token = '299d53e426b3d238e912aee5da7539329f8911030fbbd0e81d29417dd466606581b201ec71d6af79f6665e2844fb5de15b72c196c6c5041492f2a6c6ca29b528'
+Yeartogo::Application.config.secret_token = '7085e61a7052fef79cc09989549810914482707d9463c39dbadd3b95e2a426224df30401c482b98bd0c93b6a9f7bb4c18e4f5ef93e0537fde7b192a6816e05b9'
