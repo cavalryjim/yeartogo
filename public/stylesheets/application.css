@@ -126,7 +126,7 @@ table tr td {
   }
   #nav {
     float: right;
-    width: 255px;
+    width: 300px;
     margin-top: 14px;
     font-weight: bold;
   }
@@ -219,7 +219,17 @@ ul#goals {
   ul#goals li a {
     font-size: 1.25em;
   }
-
+ul#milestones {
+  list-style-type: none;
+  width: 650px;
+}
+  ul#milestones li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #043552;
+  }
+  ul#milestones li.completed span {
+    text-decoration: line-through;
+  }
   
 /* Comment styles -------------------------------------------- */
 ul#comments {

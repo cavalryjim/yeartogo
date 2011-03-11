@@ -15,6 +15,7 @@
 				<% if current_user %>
 					<!-- Hello, <strong><%= current_user.display_name %></strong> -->
 					<%= link_to "Profile", current_profile_path %>
+					<%= link_to "Friend Requests (#{Friendship.find_all_by_friend_id_and_status(current_user.id,0).count})", pending_path %>
 					<%= link_to "Log out", logout_path %>
 				<% else %>
 					<%= link_to "Register", register_path %>
