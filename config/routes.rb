@@ -9,6 +9,7 @@ Yeartogo::Application.routes.draw do
 		get "/friends/approve/:username" => "friendships#approve", :as => "approve"
 		get "/goals/:id/complete" => "goals#complete", :as => "complete"
 		get "/goals/:id/milestones" => "goals#milestones", :as => "milestones"
+		get "/goals/:id/milestones/:milestone_id/complete" => "goals#complete_milestones", :as => "complete_milestones"
 		put "/goals/:id/milestones" => "goals#add_milestones", :as => "add_milestones"
 		root :to => "users#show"
 	end
