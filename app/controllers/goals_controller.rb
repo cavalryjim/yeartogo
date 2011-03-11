@@ -70,4 +70,15 @@ class GoalsController < ApplicationController
 		end
 	  redirect_to goal_path(@goal), :notice => "Milestones added!"
 	end
+	
+	def complete_milestones
+		@milestone = Milestone.find(params[:milestone_id])
+		@milestone.completed = true
+		@milestone.completed_on = Time.now
+		if @milestone.save
+			redirect_to goal_path(@milestone.goal), :notice => "Milestone completed. Congratulations!"
+		else
+			redirect_to goal_path(@milestone.goal), :notice => "Error completing milestone. Please try again."
+		end
+	end
 end

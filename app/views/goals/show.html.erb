@@ -1,22 +1,28 @@
 <div class="goal_section">
 	<h2><%= @goal.name %><% if @goal.category.present? %> / <%= @goal.category.name %><% end %></h2>
 	<% if current_user %><%= link_to "edit", edit_goal_path(@goal) %> &middot; <%= link_to "delete", @goal, :confirm => 'Are you sure?', :method => :delete %><% unless @goal.completed? %> &middot; <%= link_to "complete", complete_path(@goal.id) %><% end %><% end %>
-	<p>Due in <%= distance_of_time_in_words(@goal.timeline, Date.today) %></p>
-	<p>Completion: <%= number_to_percentage(@goal.completion, :precision => 0) %></p>
+	<p>Due in <%= distance_of_time_in_words(@goal.timeline, Date.today) %> / <%= number_to_percentage(@goal.completion, :precision => 0) %> goal profile completeness</p>
 
+	<h3>Tags<% if current_user %>(<%= link_to "add more", edit_goal_path(@goal) %>)<% end %></h3>
 	<% if !@goal.tags.blank? %>
 	  <% for tag in @goal.tags %>
 	    <%= tag.name %>
 	  <% end %>
+	<% else %>
+	  <p>No tags? <%= link_to "Add some now.", edit_goal_path(@goal) %></p>
 	<% end %>
 </div><!-- .goal_section -->
 
 <div class="goal_section">
-	<h3>Milestones</h3>
+	<h3>Milestones<% if current_user %>(<%= link_to "add more", add_milestones_path(@goal) %>)<% end %></h3>
 	<% if !@goal.milestones.blank? %>
-		<ul id="comments">
+		<ul id="milestones">
 	  <% for milestone in @goal.milestones %>
-			<li><p><%= milestone.name %> / Due in <%= distance_of_time_in_words(milestone.timeline, Date.today) %></p></li>
+			<% if milestone.completed? %>
+			<li class="completed"><span><%= milestone.name %></span> / goal <%= milestone.timeline.to_s(:shortlong) %> / completed on <%= milestone.completed_on.to_s(:shortlong) %></li>
+			<% else %>
+			<li><%= milestone.name %> / due in <%= distance_of_time_in_words(milestone.timeline, Date.today) %><% if current_user %> / <%= link_to "complete", complete_milestones_path(@goal,milestone.id) %><% end %></li>
+			<% end %>
 	  <% end %>
 		</ul>
 	<% else %>
@@ -41,6 +47,7 @@
 </div><!-- .goal_section -->
 
 <div class="goal_section">
+	<% if current_user %>
 	<%= form_for @comment do |f| -%>
 		<% if @comment.errors.any? %>
 			<div id="error_explanation">
@@ -61,4 +68,7 @@
 	
 		<p class="button"><%= f.submit "Comment" %></p>
 	<% end -%>
+	<% else %>
+	<p><%= link_to "Log in now", login_path %> to comment.</p>
+	<% end %>
 </div><!-- .goal_section -->
