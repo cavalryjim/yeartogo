@@ -1,15 +1,21 @@
 <div class="goal_section">
 	<h2><%= @goal.name %><% if @goal.category.present? %> / <%= @goal.category.name %><% end %></h2>
 	<% if current_user %><%= link_to "edit", edit_goal_path(@goal) %> &middot; <%= link_to "delete", @goal, :confirm => 'Are you sure?', :method => :delete %><% unless @goal.completed? %> &middot; <%= link_to "complete", complete_path(@goal.id) %><% end %><% end %>
-	<p>Due in <%= distance_of_time_in_words(@goal.timeline, Date.today) %> / <%= number_to_percentage(@goal.completion, :precision => 0) %> goal profile completeness</p>
+	<p><% if @goal.user != current_user %><%= link_to @goal.user.display_name, profile_path(@goal.user) %> / <% end %>Due in <%= distance_of_time_in_words(@goal.timeline, Date.today) %> / <%= number_to_percentage(@goal.completion, :precision => 0) %> goal profile completeness</p>
+</div><!-- .goal_section -->
 
+<div class="goal_section">
 	<h3>Tags<% if current_user %> (<%= link_to "add more", edit_goal_path(@goal) %>)<% end %></h3>
 	<% if !@goal.tags.blank? %>
 	  <% for tag in @goal.tags %>
 	    <%= tag.name %>
 	  <% end %>
 	<% else %>
+		<% if current_user %>
 	  <p>No tags? <%= link_to "Add some now.", edit_goal_path(@goal) %></p>
+		<% else %>
+		<p>No tags.</p>
+		<% end %>
 	<% end %>
 </div><!-- .goal_section -->
 
@@ -26,7 +32,11 @@
 	  <% end %>
 		</ul>
 	<% else %>
+		<% if current_user %>
 	  <p>No milestones yet! <%= link_to "Add some now.", milestones_path(@goal) %></p>
+		<% else %>
+		<p>No milestones.</p>
+		<% end %>
 	<% end %>
 </div><!-- .goal_section -->
 
