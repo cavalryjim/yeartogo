@@ -1,6 +1,10 @@
 class GoalsController < ApplicationController
   def new
-		@goal = Goal.new
+		if current_user
+			@goal = Goal.new
+		else
+			redirect_to login_path, :notice => "You have to be logged in to do that."
+		end
   end
 
   def create
