@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
 	end
 	
 	def pending_requests
-		@pending_requests ||= Friendship.find_all_by_friend_id_and_status(current_user.id,0) if current_user
+		@pending_requests ||= Friendship.find_all_by_friend_id_and_status(current_user.id,0).count if current_user
 	end
 end
