@@ -3,7 +3,7 @@
 	<% if current_user %><%= link_to "edit", edit_goal_path(@goal) %> &middot; <%= link_to "delete", @goal, :confirm => 'Are you sure?', :method => :delete %><% unless @goal.completed? %> &middot; <%= link_to "complete", complete_path(@goal.id) %><% end %><% end %>
 	<p>Due in <%= distance_of_time_in_words(@goal.timeline, Date.today) %> / <%= number_to_percentage(@goal.completion, :precision => 0) %> goal profile completeness</p>
 
-	<h3>Tags<% if current_user %>(<%= link_to "add more", edit_goal_path(@goal) %>)<% end %></h3>
+	<h3>Tags<% if current_user %> (<%= link_to "add more", edit_goal_path(@goal) %>)<% end %></h3>
 	<% if !@goal.tags.blank? %>
 	  <% for tag in @goal.tags %>
 	    <%= tag.name %>
@@ -14,7 +14,7 @@
 </div><!-- .goal_section -->
 
 <div class="goal_section">
-	<h3>Milestones<% if current_user %>(<%= link_to "add more", add_milestones_path(@goal) %>)<% end %></h3>
+	<h3>Milestones<% if current_user %> (<%= link_to "add more", add_milestones_path(@goal) %>)<% end %></h3>
 	<% if !@goal.milestones.blank? %>
 		<ul id="milestones">
 	  <% for milestone in @goal.milestones %>
