@@ -35,7 +35,7 @@ class GoalsController < ApplicationController
   def update
 		@goal = Goal.find(params[:id])
 		@goal.user = current_user
-		if @goal.update_attributes
+		if @goal.update_attributes(params[:goal])
 			redirect_to @goal, :notice => "Goal successfully updated! Get back to it."
 		else
 			flash[:notice] = "Error updating goal. Please try again."
